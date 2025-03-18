@@ -10,7 +10,7 @@ export default function Blog() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const res = await fetch("https://weightedblanketindia.com/wp-json/wp/v2/posts");
+        const res = await fetch("https://posts.weightedblanketindia.com/wp-json/wp/v2/posts");
         const data = await res.json();
         setPosts(data);
       } catch (error) {

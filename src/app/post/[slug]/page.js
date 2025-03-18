@@ -140,8 +140,9 @@ const PostPage = () => {
     const fetchPost = async () => {
       try {
         const res = await fetch(
-          `https://weightedblanketindia.com/wp-json/wp/v2/posts?slug=${params.slug}&_embed`
+          `https://posts.weightedblanketindia.com/wp-json/wp/v2/posts?slug=${params.slug}&_embed`
         );
+        
         if (!res.ok) throw new Error("Post not found");
 
         const posts = await res.json();

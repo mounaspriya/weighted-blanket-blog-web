@@ -32,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const res = await fetch("https://weightedblanketindia.com/wp-json/wp/v2/posts"); // Replace with your actual API
+        const res = await fetch("https://posts.weightedblanketindia.com/wp-json/wp/v2/posts"); // Replace with your actual API
         const data = await res.json();
         setPosts(data);
         console.log("Fetched Posts:", data); // ✅ Check if posts are being fetched

@@ -16,6 +16,10 @@
   font-weight: bold;
 }
 
+
+
+
+
 .container {
   padding: 5%;
 }
@@ -490,4 +494,105 @@ article img {
 
 .search-results a:hover {
   background: #f0f0f0;
+}
+
+/* Responsive Header */
+/* @media (max-width: 768px) {
+  .header, .footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 3%;
+  }
+
+  .footer-right {
+    justify-content: center;
+    gap: 10px;
+  }
+} */
+
+
+@media (max-width: 768px) {
+  .header, .footer {
+    display: flex;
+    flex-direction: row; /* Arrange content in a single row */
+    align-items: center;
+    justify-content: space-between; /* Space out the content */
+    text-align: center;
+    padding: 10px 3%;
+    width: 100%;
+    font-size: 14px; /* Adjust font size for better readability */
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    z-index: 1000;
+    border-top: 1px solid #ddd;
+  }
+
+  /* Ensure body content is not hidden behind header/footer */
+  body {
+    padding-top: 50px; /* Adjust based on header height */
+    padding-bottom: 50px; /* Adjust based on footer height */
+  }
+
+  /* Reduce font size for header & footer elements */
+  .header a, .footer a, 
+  .header span, .footer span {
+    font-size: 12px; /* Smaller font size for compact layout */
+  }
+}
+
+/* Responsive Hero Section */
+@media (max-width: 768px) {
+  .our-viewpoint-title {
+    font-size: 3rem;  /* Reduce text size */
+    line-height: 1.2;
+    height: auto;
+    padding: 20px;
+  }
+}
+
+/* Responsive Blog Posts Layout */
+@media (max-width: 768px) {
+  .posts-container {
+    flex-direction: column;
+  }
+
+  .first-post img {
+    height: auto;
+  }
+}
+
+/* Responsive Insights Section */
+@media (max-width: 768px) {
+  .insights-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .displaying-dropdown {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+/* Responsive Search Box */
+@media (max-width: 600px) {
+  .search-box {
+    width: 100%;
+    position: static;
+    margin-top: 10px;
+  }
 }
