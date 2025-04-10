@@ -111,10 +111,113 @@
 //   )
 // }
 
+// "use client"
+// import { useEffect, useState } from "react"
+// import Image from "next/image"
+
+
+// export default function ProductList() {
+//   const [products, setProducts] = useState([])
+//   const [loading, setLoading] = useState(true)
+//   const [error, setError] = useState(null)
+
+//   useEffect(() => {
+//     async function fetchProducts() {
+//       try {
+//         setLoading(true)
+//         const res = await fetch("/api/scrape")
+
+//         if (!res.ok) {
+//           throw new Error(`HTTP error! Status: ${res.status}`)
+//         }
+
+//         const data = await res.json()
+
+//         if (data.error) {
+//           throw new Error(data.error)
+//         }
+
+//         const formattedProducts = (data.products || []).map((product) => ({
+//           ...product,
+//           image: product.image || "/placeholder.svg",
+//         }))
+
+//         setProducts(formattedProducts)
+//         setError(null)
+//       } catch (error) {
+//         console.error("Error fetching products:", error)
+//         setError(error.message)
+//       } finally {
+//         setLoading(false)
+//       }
+//     }
+
+//     fetchProducts()
+//   }, [])
+
+//   return (
+//     <div className="product-list-container">
+//       <h2 className="product-list-title">Weighted Blankets</h2>
+
+//       {loading ? (
+//         <div className="loading-container">
+//           <div className="loader"></div>
+//           <span className="loading-text">Loading products...</span>
+//         </div>
+//       ) : (
+//         <div className="product-grid">
+//           {products.length > 0 ? (
+//             products.map((product, index) => (
+//               <div key={index} className="product-card">
+//                 <div className="product-image-wrapper">
+//                   {product.image && product.image !== "/placeholder.svg" ? (
+//                     <Image
+//                       src={product.image}
+//                       alt={product.title || "Product image"}
+//                       width={200}
+//                       height={200}
+//                       className="product-image"
+//                       unoptimized
+//                     />
+//                   ) : (
+//                     <div className="no-image">No image available</div>
+//                   )}
+//                   {product.rank && (
+//                     <span className="product-rank">#{product.rank}</span>
+//                   )}
+//                 </div>
+//                 <div className="product-content">
+//                   <h3 className="product-title">{product.title || "Untitled Product"}</h3>
+//                   {product.link && (
+//                     <a
+//                       href={product.link.startsWith("/")
+//                         ? `https://www.bestreviewsonline.in${product.link}`
+//                         : product.link}
+//                       target="_blank"
+//                       rel="noopener noreferrer"
+//                       className="product-button"
+//                     >
+//                       View Product
+//                     </a>
+//                   )}
+//                 </div>
+//               </div>
+//             ))
+//           ) : (
+//             <div className="no-products">
+//               <p>No products found. Please try again later.</p>
+//             </div>
+//           )}
+//         </div>
+//       )}
+//     </div>
+//   )
+// }
+
+
 "use client"
 import { useEffect, useState } from "react"
 import Image from "next/image"
-
 
 export default function ProductList() {
   const [products, setProducts] = useState([])
@@ -139,7 +242,7 @@ export default function ProductList() {
 
         const formattedProducts = (data.products || []).map((product) => ({
           ...product,
-          image: product.image || "/placeholder.svg",
+          image: product.image || "/placeholder.svg", // fallback image
         }))
 
         setProducts(formattedProducts)
@@ -164,6 +267,8 @@ export default function ProductList() {
           <div className="loader"></div>
           <span className="loading-text">Loading products...</span>
         </div>
+      ) : error ? (
+        <div className="error-message">Error: {error}</div>
       ) : (
         <div className="product-grid">
           {products.length > 0 ? (
@@ -190,9 +295,11 @@ export default function ProductList() {
                   <h3 className="product-title">{product.title || "Untitled Product"}</h3>
                   {product.link && (
                     <a
-                      href={product.link.startsWith("/")
-                        ? `https://www.bestreviewsonline.in${product.link}`
-                        : product.link}
+                      href={
+                        product.link.startsWith("/")
+                          ? `https://www.bestreviewsonline.in${product.link}`
+                          : product.link
+                      }
                       target="_blank"
                       rel="noopener noreferrer"
                       className="product-button"
